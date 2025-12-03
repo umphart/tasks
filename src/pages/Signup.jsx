@@ -47,46 +47,44 @@ export default function Signup() {
     }
   }
 
-  if (success && needsConfirmation) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
-        <div className="max-w-md w-full text-center">
-          <div className="flex justify-center mb-6">
-            <CheckCircle className="h-16 w-16 text-green-500" />
-          </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Check your email!
-          </h2>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-            <p className="text-gray-700 mb-2">
-              We've sent a confirmation link to:
-            </p>
-            <p className="font-semibold text-blue-700">{email}</p>
-          </div>
-          <p className="text-gray-600 mb-6">
-            Click the link in the email to verify your account and start using TaskMaster.
+ if (success && needsConfirmation) {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="text-center max-w-md p-8">
+        <div className="text-green-500 text-5xl mb-4">✓</div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          Almost there!
+        </h2>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+          <p className="text-gray-700">
+            We sent a confirmation email to:
           </p>
-          <div className="space-y-4">
-            <button
-              onClick={() => navigate('/login')}
-              className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-            >
-              Go to Login
-            </button>
-            <p className="text-sm text-gray-500">
-              Didn't receive the email? Check your spam folder or{' '}
-              <button
-                onClick={handleSubmit}
-                className="text-blue-600 hover:text-blue-800"
-              >
-                try again
-              </button>
-            </p>
-          </div>
+          <p className="font-semibold text-blue-700 mt-2">{email}</p>
+        </div>
+        <p className="text-gray-600 mb-6">
+          Please check your email and click the confirmation link to activate your account.
+        </p>
+        <div className="space-y-3">
+          <button
+            onClick={() => navigate('/login')}
+            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          >
+            Go to Login
+          </button>
+          <button
+            onClick={() => {
+              setSuccess(false)
+              setNeedsConfirmation(false)
+            }}
+            className="w-full py-2 px-4 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+          >
+            Try Another Email
+          </button>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
+}
 
   if (success && !needsConfirmation) {
     return (
